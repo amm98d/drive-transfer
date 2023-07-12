@@ -1,5 +1,6 @@
-
 node_modules
 credentials.json
-token_1.json
-token_2.json
+destination_token.json
+host_token.json
+*.pdf
+*.docx
