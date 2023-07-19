@@ -7,6 +7,7 @@ const {
   GOOGLE_SHEET_TYPE,
   EXCEL_SHEET_TYPE,
   DRIVE_FOLDER_TYPE,
+  DRIVE_SHORTCUT_TYPE,
 } = require("./constants.js");
 const { bytesToMB, isFolder, shutDown } = require("./utils.js");
 const { google } = require("googleapis");
@@ -36,17 +37,17 @@ async function authInit() {
 
 const listFiles = async (hostParentID, targetParentID) => {
   let res = await HOST_DRIVE.files.list({
-    q: `"${hostParentID}" in parents`,
+    q: `"${hostParentID}" in parents and trashed=false and mimeType!="${DRIVE_SHORTCUT_TYPE}"`,
     fields:
-      "nextPageToken, kind, incompleteSearch, files(size, kind, mimeType, id, name )",
+      "nextPageToken, kind, incompleteSearch, files(size, kind, mimeType, id, name)",
   });
   const files = res.data.files;
   while (res.data.nextPageToken) {
     res = await HOST_DRIVE.files.list({
       pageToken: res.data.nextPageToken,
-      q: `"${hostParentID}" in parents`,
+      q: `"${hostParentID}" in parents and trashed=false and mimeType!="${DRIVE_SHORTCUT_TYPE}"`,
       fields:
-        "nextPageToken, kind, incompleteSearch, files(size, kind, mimeType, id, name )",
+        "nextPageToken, kind, incompleteSearch, files(size, kind, mimeType, id, name)",
     });
     for (const file of res.data.files) files.push(file);
     if (files.length === 0) break;

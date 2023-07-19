@@ -2,10 +2,10 @@ const fsp = require("fs").promises;
 const { google } = require("googleapis");
 const { authenticate } = require("@google-cloud/local-auth");
 
-const HOST_TOKEN_PATH = "./config/host_token.json";
-const DESTINATION_TOKEN_PATH = "./config/destination_token.json";
+const HOST_TOKEN_PATH = "./host_token.json";
+const DESTINATION_TOKEN_PATH = "./destination_token.json";
 const SCOPES = ["https://www.googleapis.com/auth/drive"];
-const APP_CREDENTIALS_PATH = "./config/credentials.json";
+const APP_CREDENTIALS_PATH = "./credentials.json";
 
 async function auth(isHost) {
   let client = await loadSavedCredentialsIfExist(isHost);

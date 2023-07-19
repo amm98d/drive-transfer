@@ -6,4 +6,5 @@ module.exports = {
   EXCEL_SHEET_TYPE:
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   DRIVE_FOLDER_TYPE: "application/vnd.google-apps.folder",
+  DRIVE_SHORTCUT_TYPE: "application/vnd.google-apps.shortcut",
 };
