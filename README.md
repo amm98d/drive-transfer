@@ -17,10 +17,14 @@ If you're having issues transferring your whole drive data from one Google accou
 ## How to Use
 
 1. Clone the repository
-2. Do an `npm install` (assuming you have Node.js and npm installed
-)
-3. You'll need to provide a credentials.js file that you can quickly and easily create by following the instructions [here](https://developers.google.com/drive/api/quickstart/nodejs#authorize_credentials_for_a_desktop_application) (make sure you have a project created in your Google Cloud Console for this)
+2. Do an `npm install` (assuming you have Node.js and npm installed)
+3. You'll need to provide a credentials.js file. You can create this file by following the steps listed [here](https://developers.google.com/drive/api/quickstart/nodejs#set_up_your_environment) to setup your environment
+
+    - Make sure you have a project created in your Google Cloud Console for this
+    - Make sure to add the host account and destination account in the test users, during the oauth screen step
+
 4. Once you've downloaded the credentials.json file, place it in the root folder of your cloned repo.
+
 5. Run with `node index.js`
 
 ## Limitations
