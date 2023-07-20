@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { unlink } = require("fs/promises");
+const { unlink, writeFile } = require("fs/promises");
 const { auth } = require("./auth.js");
 const {
   GOOGLE_DOC_TYPE,
@@ -90,14 +90,14 @@ const createNewFolder = async (name, parent, mimeType) => {
   return res.data.id;
 };
 
-const fileTransfer = async (currentNode) => {
+const fileTransfer = async (currentNode, path) => {
   // if (currentNode.name !== TRUTH_PATTERN[TP_ITERATOR].name) {
   //   console.log("MISMATCH FOUND DURING FILE TRANSFER:");
   //   console.log(currentNode);
   //   shutDown();
   // }
   if (parseFloat(currentNode.size) > 5) {
-    SKIPPED.push(currentNode);
+    SKIPPED.push(path);
     console.log("====> SKIPPING FILE: (TOO LARGE)");
     TP_ITERATOR++;
     return;
@@ -195,22 +195,28 @@ const sync = async (path, currentNode) => {
     for (const child of currentNode.children)
       await sync(path + child.name + "/", child);
   } else {
-    await fileTransfer(currentNode);
+    await fileTransfer(currentNode, path);
   }
 };
 
 async function main() {
   await authInit();
 
-  console.log("Building Truth Pattern...");
-  console.log();
+  // console.log("Building Truth Pattern...");
+  // console.log();
 
   // await buildTruthPattern("./", { ...INITIAL_NODE });
 
-  console.log("Finished. Starting sync now...");
+  console.log();
+  console.log("Starting sync now...");
   console.log();
 
   await sync("./", { ...INITIAL_NODE });
+
+  console.log();
+
+  const skippedData = SKIPPED.join("\n");
+  await writeFile("skipped.txt", skippedData);
 
   console.log("Sync Complete.");
 }

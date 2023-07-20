@@ -4,3 +4,4 @@ destination_token.json
 host_token.json
 *.pdf
 *.docx
+skipped.txt
