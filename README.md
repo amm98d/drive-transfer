@@ -4,7 +4,7 @@ Drive Transfer is a Node.js utility for transferring all data from one Google Dr
 
 ## Who is it for
 
-If you're having issues transfering your whole drive data from one Google account to another because of files like Google Docs, Sheets, Presentations etc (they don't open in the new drive unless you download and upload the file specifically), then you might find this utility helpful. Otherwise you're good.
+If you're having issues transferring your whole drive data from one Google account to another because of files like Google Docs, Sheets, Presentations, etc (they don't open in the new drive unless you download and upload the file specifically), then you might find this utility helpful. Otherwise, you're good.
 
 ## How it works
 
@@ -28,5 +28,5 @@ If you're having issues transfering your whole drive data from one Google accoun
 - Won't transfer shortcuts
 - Won't transfer files larger than 5 MB (limitation by Drive API). A log (skipped.txt) is created for these files along with their path so you can do them manually
 - Although for most cases it will work just fine, there is no error handling in this code. Exceptions can and will be thrown
-- Won't transfer files in "Shared With Me" folder
+- Won't transfer files in the "Shared With Me" folder
 - Will only transfer files owned by the host user and located in the root folder
